@@ -24,14 +24,14 @@ pipeline {
   }
 
   stages {
-    stage('Install SSO Sync command') {
-      steps {
-        script {
-          sh 'make go-build'
-          sh './ssosync -h'
-        }
-      }
-    }
+    // stage('Install SSO Sync command') {
+    //   steps {
+    //     script {
+    //       sh 'make go-build'
+    //       sh './ssosync -h'
+    //     }
+    //   }
+    // }
 
     stage('Add .env file') {
       steps {
