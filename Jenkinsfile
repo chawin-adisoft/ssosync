@@ -18,7 +18,8 @@ def getAgentLabel() {
 pipeline {
   agent {
       node {
-        label getAgentLabel()
+        // label getAgentLabel()
+        label jenkins-node
       }
   }
 
