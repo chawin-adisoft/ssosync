@@ -35,7 +35,7 @@ pipeline {
     stage('Add .env file') {
       steps {
         script {
-          def credentialsName = "Adisoft/data/google-credentials"
+          def credentialsName = "Adisoft/data/sso_sync"
           echo "Retrieve the .env secret from Vault credentialsName : ${credentialsName}"
           withVault([[$class: 'VaultSecret',
             path: "${credentialsName}",
@@ -45,6 +45,20 @@ pipeline {
               } else {
                 error("Vault ${credentialsName} key is empty or not found.")
               }
+            }
+        }
+      }
+    }
+
+    stage('Add Google Credentials file') {
+      steps {
+        script {
+          def credentialsName = "Adisoft/data/google-credentials"
+          echo "Retrieve the .env secret from Vault credentialsName : ${credentialsName}"
+          withVault([[$class: 'VaultSecret',
+            path: "${credentialsName}",
+            secretValues: [[vaultKey: 'data', envVar: 'dotENV']]]]) {
+                sh '''echo "$dotENV" > google-credentials.json'''
             }
         }
       }
