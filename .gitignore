@@ -43,3 +43,6 @@ staging.yaml
 cicd/.DS_Store
 *.swo
 cicd/.DS_Store
+
+# Dot ENV
+.env
