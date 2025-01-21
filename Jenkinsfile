@@ -19,7 +19,7 @@ pipeline {
   agent {
       node {
         // label getAgentLabel()
-        label jenkins-node
+        label 'jenkins-node'
       }
   }
 
