@@ -27,8 +27,9 @@ pipeline {
     stage('Install SSO Sync command') {
       steps {
         script {
-          sh 'make go-build'
-          sh './ssosync -h'
+            sh 'pwd'
+            sh 'PATH=$PATH:/usr/local/go/bin make go-build'
+            sh './ssosync -h'
         }
       }
     }
