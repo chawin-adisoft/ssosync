@@ -17,6 +17,7 @@ package internal
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"io/ioutil"
 
@@ -806,7 +807,13 @@ func DoSync(ctx context.Context, cfg *config.Config) error {
 	        log.WithField("error", err).Warn("Problem performing test query against Identity Store")
 		return err
 	}
-	log.WithField("Groups", response).Info("Test call for groups successful")
+
+	prettyJSON, err := json.MarshalIndent(response, "", "  ")
+	if err != nil {
+		log.WithError(err).Error("Failed to marshal groups response")
+	} else {
+		log.WithField("Groups", string(prettyJSON)).Info("Test call for groups successful")
+	}
 
 	// Initialize sync client with
 	// 1. SCIM API client
