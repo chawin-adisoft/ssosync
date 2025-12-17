@@ -18,7 +18,7 @@ def getAgentLabel() {
 pipeline {
   agent {
       node {
-        label getAgentLabel()
+        label 'Adisoft-image-builder'
         // label 'jenkins-node'
       }
   }
